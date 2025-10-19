@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机工具 - CrispyXYZ的在线工具箱</title>
+    <link rel="stylesheet" href="random-tool/style.css">
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-link">← 返回工具列表</a>
+        <h1>🎲 随机工具</h1>
+        <p class="subtitle">随机选择、随机数生成、UUID生成</p>
+    </header>
+    
+    <div class="tabs">
+        <button class="tab-button active" data-tab="random-picker">随机选择器</button>
+        <button class="tab-button" data-tab="random-number">随机数生成</button>
+        <button class="tab-button" data-tab="uuid-generator">UUID生成</button>
+    </div>
+    
+    <div class="tab-content active" id="random-picker">
+        <div class="container">
+            <div class="input-section">
+                <h2>输入设置</h2>
+                
+                <div class="form-group">
+                    <label for="itemList">项目列表（每行一个项目）</label>
+                    <textarea id="itemList" placeholder="请输入项目，每行一个...&#10;例如：&#10;苹果&#10;香蕉&#10;橙子&#10;葡萄"></textarea>
+                </div>
+                
+                <div class="options">
+                    <div class="form-group">
+                        <label for="selectCount">选择数量</label>
+                        <input type="number" id="selectCount" min="1" value="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="selectionType">选择方式</label>
+                        <select id="selectionType">
+                            <option value="random">完全随机</option>
+                            <option value="unique">不重复选择</option>
+                            <option value="weighted">加权随机</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="weightsContainer" style="display: none;">
+                    <label>项目权重（1-10，数值越大被选中的概率越高）</label>
+                    <div id="weightsList"></div>
+                </div>
+                
+                <button id="randomizeBtn" class="btn btn-full">随机选择</button>
+                <button id="resetBtn" class="btn btn-secondary btn-full">重置</button>
+            </div>
+            
+            <div class="output-section">
+                <h2>选择结果</h2>
+                <div class="result-container" id="resultContainer">
+                    <div class="empty-state">点击"随机选择"按钮查看结果</div>
+                </div>
+                
+                <div class="history-section">
+                    <h2>选择历史</h2>
+                    <div class="result-container" id="historyContainer">
+                        <div class="empty-state">暂无历史记录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="random-number">
+        <div class="container">
+            <div class="input-section">
+                <h2>随机数设置</h2>
+                
+                <div class="options">
+                    <div class="form-group">
+                        <label for="minValue">最小值</label>
+                        <input type="number" id="minValue" value="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maxValue">最大值</label>
+                        <input type="number" id="maxValue" value="100">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="numberCount">生成数量</label>
+                    <input type="number" id="numberCount" min="1" max="100" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="numberType">数值类型</label>
+                    <select id="numberType">
+                        <option value="integer">整数</option>
+                        <option value="decimal">小数</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="decimalPlacesContainer">
+                    <label for="decimalPlaces">小数位数</label>
+                    <input type="number" id="decimalPlaces" min="1" max="10" value="2">
+                </div>
+                
+                <button id="generateNumberBtn" class="btn btn-full">生成随机数</button>
+                <button id="resetNumberBtn" class="btn btn-secondary btn-full">重置</button>
+            </div>
+            
+            <div class="output-section">
+                <h2>生成结果</h2>
+                <div class="result-container" id="numberResultContainer">
+                    <div class="empty-state">点击"生成随机数"按钮查看结果</div>
+                </div>
+                
+                <div class="history-section">
+                    <h2>生成历史</h2>
+                    <div class="result-container" id="numberHistoryContainer">
+                        <div class="empty-state">暂无历史记录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="uuid-generator">
+        <div class="container">
+            <div class="input-section">
+                <h2>UUID生成设置</h2>
+                
+                <div class="form-group">
+                    <label for="uuidCount">生成数量</label>
+                    <input type="number" id="uuidCount" min="1" max="50" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="uuidVersion">UUID版本</label>
+                    <select id="uuidVersion">
+                        <option value="v4">UUID v4 (随机)</option>
+                        <option value="v1">UUID v1 (时间戳)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="uuidFormat">输出格式</label>
+                    <select id="uuidFormat">
+                        <option value="standard">标准格式 (8-4-4-4-12)</option>
+                        <option value="no-dashes">无连字符</option>
+                        <option value="uppercase">大写字母</option>
+                    </select>
+                </div>
+                
+                <button id="generateUuidBtn" class="btn btn-full">生成UUID</button>
+                <button id="resetUuidBtn" class="btn btn-secondary btn-full">重置</button>
+            </div>
+            
+            <div class="output-section">
+                <h2>生成结果</h2>
+                <div class="result-container" id="uuidResultContainer">
+                    <div class="empty-state">点击"生成UUID"按钮查看结果</div>
+                </div>
+                
+                <div class="history-section">
+                    <h2>生成历史</h2>
+                    <div class="result-container" id="uuidHistoryContainer">
+                        <div class="empty-state">暂无历史记录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 CrispyXYZ的在线工具箱 | 简单实用的网页工具集合</p>
+        <a href="../index.html" class="back-link">← 返回工具列表</a>
+    </div>
+
+    <script src="random-tool/script.js"></script>
+</body>
+</html>
