@@ -339,19 +339,12 @@ function initUUIDGenerator() {
   // 生成UUID
   function generateUUIDs() {
     const count = parseInt(uuidCount.value) || 1;
-    const version = uuidVersion.value;
     const format = uuidFormat.value;
 
     let uuids = [];
 
     for (let i = 0; i < count; i++) {
-      let uuid;
-
-      if (version === "v4") {
-        uuid = generateUUIDv4();
-      } else {
-        uuid = generateUUIDv1();
-      }
+      let uuid = generateUUIDv4();
 
       // 应用格式
       if (format === "no-dashes") {
@@ -377,25 +370,6 @@ function initUUIDGenerator() {
         return v.toString(16);
       }
     );
-  }
-
-  // 生成UUID v1 (基于时间戳)
-  function generateUUIDv1() {
-    const now = new Date().getTime();
-    const timeLow = (now & 0xffffffff).toString(16).padStart(8, "0");
-    const timeMid = ((now >> 32) & 0xffff).toString(16).padStart(4, "0");
-    const timeHigh = ((now >> 48) & 0x0fff).toString(16).padStart(4, "0") + "1"; // 版本1
-
-    const clockSeq = Math.floor(Math.random() * 0x3fff)
-      .toString(16)
-      .padStart(4, "0");
-    const node = Array.from({ length: 6 }, () =>
-      Math.floor(Math.random() * 256)
-        .toString(16)
-        .padStart(2, "0")
-    ).join("");
-
-    return `${timeLow}-${timeMid}-${timeHigh}-${clockSeq}-${node}`;
   }
 
   // 显示UUID结果
