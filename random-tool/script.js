@@ -392,14 +392,7 @@ function initUUIDGenerator() {
     document.querySelectorAll(".copy-btn").forEach((button) => {
       button.addEventListener("click", function () {
         const uuid = this.getAttribute("data-uuid");
-        copyToClipboard(uuid);
-
-        // 临时改变按钮文本
-        const originalText = this.textContent;
-        this.textContent = "已复制!";
-        setTimeout(() => {
-          this.textContent = originalText;
-        }, 1500);
+        copyTextToClipboard(uuid);
       });
     });
   }
@@ -430,14 +423,74 @@ function initUUIDGenerator() {
     }
   }
 
-  // 复制到剪贴板
-  function copyToClipboard(text) {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+  function copyTextToClipboard(text) {
+    // 方案1: 现代 Clipboard API
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(
+        function () {
+          showFeedback("复制成功!");
+        },
+        function (err) {
+          console.error("复制失败，使用回退方案:", err);
+          fallbackCopyTextToClipboard(text);
+        }
+      );
+    } else {
+      // 方案2: 回退方案
+      fallbackCopyTextToClipboard(text);
+    }
+  }
+
+  function fallbackCopyTextToClipboard(text) {
+    // 创建临时文本区域
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+
+    // 避免滚动到底部
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      // 尝试使用已弃用但广泛支持的方法
+      const successful = document.execCommand("copy");
+      if (successful) {
+        showFeedback("复制成功!");
+      } else {
+        showFeedback("复制失败，请手动复制");
+      }
+    } catch (err) {
+      console.error("回退复制失败:", err);
+      showFeedback("复制失败，请手动复制: " + text);
+    }
+
+    document.body.removeChild(textArea);
+  }
+
+  function showFeedback(message) {
+    // 显示用户反馈
+    const feedback = document.createElement("div");
+    feedback.textContent = message;
+    feedback.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 10000;
+  `;
+    document.body.appendChild(feedback);
+
+    setTimeout(() => {
+      document.body.removeChild(feedback);
+    }, 2000);
   }
 
   // 重置UUID表单
