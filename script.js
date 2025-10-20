@@ -9,9 +9,9 @@ const tools = [
   {
     icon: "📝",
     title: "文本工具",
-    description: "文本格式化、编码转换、字数统计",
-    link: "#",
-    enabled: false,
+    description: "字数统计、格式清理",
+    link: "text-tool",
+    enabled: true,
   },
   {
     icon: "🔢",

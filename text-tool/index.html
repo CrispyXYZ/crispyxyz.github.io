@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本工具 - CrispyXYZ的在线工具箱</title>
+    <link rel="stylesheet" href="/text-tool/style.css">
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-link">← 返回工具列表</a>
+        <h1>📝 文本工具</h1>
+        <p class="subtitle">字数统计、格式清理、文本处理</p>
+    </header>
+    
+    <div class="container">
+        <div class="input-section">
+            <h2>输入文本</h2>
+            
+            <div class="form-group">
+                <textarea id="textInput" placeholder="请输入要处理的文本..."></textarea>
+            </div>
+            
+            <div class="stats-container">
+                <h3>字数统计</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">字符数（含空格）</span>
+                        <span class="stat-value" id="charCountWithSpaces">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">字符数（无空格）</span>
+                        <span class="stat-value" id="charCountNoSpaces">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">单词数</span>
+                        <span class="stat-value" id="wordCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">行数</span>
+                        <span class="stat-value" id="lineCount">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cleanup-options">
+                <h3>格式清理选项</h3>
+                <div class="options-grid">
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="removeExtraSpaces" checked>
+                        <span class="checkmark"></span>
+                        去除多余空格
+                    </label>
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="removeEmptyLines" checked>
+                        <span class="checkmark"></span>
+                        去除空行
+                    </label>
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="trimLines">
+                        <span class="checkmark"></span>
+                        去除行首尾空格
+                    </label>
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="removeSpecialChars">
+                        <span class="checkmark"></span>
+                        去除特殊字符
+                    </label>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="cleanTextBtn" class="btn btn-primary">清理文本</button>
+                <button id="resetBtn" class="btn btn-secondary">重置</button>
+                <button id="copyBtn" class="btn btn-secondary">复制结果</button>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h2>处理结果</h2>
+            <div class="form-group">
+                <textarea id="textOutput" readonly placeholder="清理后的文本将显示在这里..."></textarea>
+            </div>
+            
+            <div class="changes-summary">
+                <h3>变更摘要</h3>
+                <div id="changesInfo" class="changes-info">
+                    <div class="empty-state">文本清理后，变更信息将显示在这里</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 CrispyXYZ的在线工具箱 | 简单实用的网页工具集合</p>
+        <a href="../index.html" class="back-link">← 返回工具列表</a>
+    </div>
+
+    <script src="/text-tool/script.js"></script>
+</body>
+</html>
