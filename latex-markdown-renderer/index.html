@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX/Markdown渲染器 - CrispyXYZ的在线工具箱</title>
+    <link rel="stylesheet" href="/latex-markdown-renderer/style.css">
+    <!-- KaTeX for LaTeX rendering (更轻量级) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <!-- Marked for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-link">← 返回工具列表</a>
+        <h1>📄 LaTeX/Markdown渲染器</h1>
+        <p class="subtitle">实时渲染LaTeX数学公式和Markdown文本</p>
+    </header>
+    
+    <div class="container">
+        <div class="input-section">
+            <div class="section-header">
+                <h2>输入</h2>
+                <div class="format-buttons">
+                    <button id="insertLatexBtn" class="btn btn-small">插入LaTeX</button>
+                    <button id="insertCodeBtn" class="btn btn-small">插入代码块</button>
+                    <button id="clearBtn" class="btn btn-small">清空</button>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <textarea id="textInput" placeholder="在此输入LaTeX数学公式或Markdown文本..."></textarea>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <div class="section-header">
+                <h2>实时预览</h2>
+                <div class="render-controls">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="autoRender" checked>
+                        <span class="toggle-slider"></span>
+                        自动渲染
+                    </label>
+                    <button id="renderBtn" class="btn btn-small">手动渲染</button>
+                </div>
+            </div>
+            
+            <div id="previewContainer" class="preview-container">
+                <div class="empty-state">
+                    <p>预览将显示在这里</p>
+                    <p class="hint">在左侧输入LaTeX或Markdown内容</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 CrispyXYZ的在线工具箱 | 简单实用的网页工具集合</p>
+        <a href="../index.html" class="back-link">← 返回工具列表</a>
+    </div>
+
+    <script src="/latex-markdown-renderer/script.js"></script>
+</body>
+</html>

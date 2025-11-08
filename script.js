@@ -14,6 +14,13 @@ const tools = [
     enabled: true,
   },
   {
+    "icon": "📄",
+    "title": "LaTeX/Markdown渲染器",
+    "description": "实时渲染LaTeX数学公式和Markdown文本",
+    "link": "latex-markdown-renderer",
+    "enabled": true
+  },
+  {
     icon: "🔢",
     title: "计算工具",
     description: "单位换算、货币转换、科学计算器",
